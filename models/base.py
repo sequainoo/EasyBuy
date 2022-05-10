@@ -56,3 +56,8 @@ class BaseModel:
                 value = value.isoformat()
             dict_[key] = value
         return dict_
+    
+    def __str__(self):
+        """Return string representation of the instance"""
+        str_ = '[{}] - ({})'.format(self.__class__.__name__, self.id)
+        return str_
