@@ -20,9 +20,21 @@ class TestInitMethod(TestCase):
         self.assertTrue(type(self.instance) is BaseModel)
 
     def test_initialized_with_id(self):
-        """Test BaseModel instance if initialized with id"""
+        """Test BaseModel instance is initialized with id"""
         self.assertTrue(type(self.instance.id) == str)
         self.assertTrue(type(uuid.UUID(self.instance.id)) == uuid.UUID)
+
+    def test_initialised_with_existing_data(self):
+        """Test that instance can be created from existing record"""
+        # existing record info
+        id_ = str(uuid.uuid4())
+        date_created = datetime.now()
+        instance = BaseModel(id=id_,
+                                     date_created=date_created,
+                                     date_modified=date_created)
+        self.assertEqual(instance.id, id_)
+        self.assertIs(instance.date_created, date_created)
+        self.assertIs(instance.date_modified, date_created)
 
     def test_date_created(self):
         """Test date_created to be equivalent to now"""
