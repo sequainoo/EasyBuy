@@ -2,13 +2,13 @@
 """Unit tests for BaseModel"""
 
 import uuid
-from unittest import TestCase
+import unittest
 from datetime import datetime
 
 from models.base import BaseModel
 
 
-class TestInitMethod(TestCase):
+class TestInitMethod(unittest.TestCase):
     """Tests for the BaseModel"""
 
     def setUp(self):
@@ -49,7 +49,7 @@ class TestInitMethod(TestCase):
         self.assertIs(self.instance.date_modified, self.instance.date_created)
 
 
-class TestUpdateMethod(TestCase):
+class TestUpdateMethod(unittest.TestCase):
     """Tests the BaseModel update method"""
 
     def setUp(self):
@@ -88,7 +88,7 @@ class TestUpdateMethod(TestCase):
         self.assertEqual(self.instance.phone, 'iphone 5s')
 
 
-class TestToDict(TestCase):
+class TestToDict(unittest.TestCase):
     """Tests for BaseModel to_dict method."""
     
     def setUp(self):
