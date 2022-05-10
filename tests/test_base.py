@@ -35,3 +35,42 @@ class TestInitMethod(TestCase):
     def test_date_modified(self):
         """Test date modified to be equivalent to date_created"""
         self.assertIs(self.instance.date_modified, self.instance.date_created)
+
+
+class TestUpdateMethod(TestCase):
+    """Tests the BaseModel update method"""
+
+    def setUp(self):
+        """Setup test cases with instance of BaseModel"""
+        self.instance = BaseModel()
+
+    def test_invoked_with_no_arg(self):
+        """Test that when no argument is passed ValueError is raised"""
+        self.assertRaises(TypeError, self.instance.update)
+
+    def test_invoked_with_positional_arg(self):
+        """Test BaseModel.update raises TypeError if passed positional arg"""
+        self.assertRaises(TypeError, self.instance.update, 'Apple')
+
+    def test_date_created_unchanged(self):
+        """test date_created remains the same after an update is made"""
+        date = self.instance.date_created
+        self.instance.update(name='iphone')
+        self.assertIs(date, self.instance.date_created)
+
+    def test_date_modified_changed(self):
+        """Test that date_modified is changed after an update"""
+        date = self.instance.date_modified
+        self.instance.update(name='Apple')
+        self.assertIsNot(self.instance.date_modified, date)
+
+    def test_update_with_one_value(self):
+        """Test that value is available on instance after update"""
+        self.instance.update(name='Apple')
+        self.assertEqual(self.instance.name, 'Apple')
+
+    def test_update_with_two_values(self):
+        """Test that values is available on instance after update"""
+        self.instance.update(name='Apple', phone='iphone 5s')
+        self.assertEqual(self.instance.name, 'Apple')
+        self.assertEqual(self.instance.phone, 'iphone 5s')
