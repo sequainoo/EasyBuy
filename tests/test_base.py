@@ -86,3 +86,26 @@ class TestUpdateMethod(TestCase):
         self.instance.update(name='Apple', phone='iphone 5s')
         self.assertEqual(self.instance.name, 'Apple')
         self.assertEqual(self.instance.phone, 'iphone 5s')
+
+
+class TestToDict(TestCase):
+    """Tests for BaseModel to_dict method."""
+    
+    def setUp(self):
+        """Setup tests"""
+        self.instance = BaseModel(name='Apple')
+
+    def test_output_is_dict(self):
+        """Test that output is a dictionary object"""
+        self.assertIs(type(self.instance.to_dict()), dict)
+
+    def test_has_all_keys_and_values(self):
+        """Test to_dict produce the expected key/value pairs
+        Makes sure length is as expected along with key/values
+        """
+        expect = {
+                'id': self.instance.id,
+                'date_created': self.instance.date_created.isoformat(),
+                'date_modified': self.instance.date_modified.isoformat(),
+                'name': self.instance.name}
+        self.assertDictEqual(self.instance.to_dict(), expect)

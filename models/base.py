@@ -45,3 +45,14 @@ class BaseModel:
             kwargs.pop('date_modified')
         self.date_modified = datetime.now()
         self.__dict__.update(kwargs)
+
+    def to_dict(self):
+        """Produces a dictionary representation of the instance"""
+        temp = self.__dict__.copy()
+        dict_ = {}
+
+        for key, value in temp.items():
+            if key == 'date_created' or key == 'date_modified':
+                value = value.isoformat()
+            dict_[key] = value
+        return dict_
