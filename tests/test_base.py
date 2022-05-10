@@ -109,3 +109,19 @@ class TestToDict(unittest.TestCase):
                 'date_modified': self.instance.date_modified.isoformat(),
                 'name': self.instance.name}
         self.assertDictEqual(self.instance.to_dict(), expect)
+
+
+class TestStr(unittest.TestCase):
+    """Tests for __str__"""
+
+    def test___str__(self):
+        """Test return of __str__
+        
+        format:
+            [type] - (id)
+        """
+        instance = BaseModel()
+        expected = "[{:s}] - ({:s})".format(instance.__class__.__name__,
+                                            instance.id)
+        
+        self.assertEqual(str(instance), expected)
