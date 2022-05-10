@@ -42,6 +42,6 @@ class BaseModel:
         if 'date_created' in kwargs:
             kwargs.pop('date_created')
         if 'date_modified' in kwargs:
-            kwargs.pop('date-modified')
+            kwargs.pop('date_modified')
         self.date_modified = datetime.now()
         self.__dict__.update(kwargs)
