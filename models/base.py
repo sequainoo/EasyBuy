@@ -20,9 +20,18 @@ class BaseModel:
             date_created (datetime): date and time created
             date_modified (datetime): data and time modified
         """
-        self.id = str(uuid.uuid4())
-        self.date_created = datetime.now()
-        self.date_modified = self.date_created
+        if kwargs:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
+        
+        if 'id' in kwargs:
+            if type(self.date_created) is not datetime\
+                or type(self.date_modified) is not datetime:
+                raise ValueError('date must be a datetime instance')
+        else:
+            self.id = str(uuid.uuid4())
+            self.date_created = datetime.now()
+            self.date_modified = self.date_created
 
     def update(self, *args, **kwargs):
         "Updates an instance with key/value pairs provided"
