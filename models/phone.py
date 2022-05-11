@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module defines the Phone Model"""
+"""Defines the Phone Model"""
 
 from models.base import BaseModel
 
