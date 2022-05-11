@@ -1,2 +1,4 @@
 *pycache__
 requirements.txt
+venv
+setup_test_db.sql
