@@ -4,10 +4,25 @@
 import uuid
 from datetime import datetime
 
+from sqlalchemy import Column, String, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+
+from utilities import small_helpers
+
+
+Base = declarative_base()
+
 
 class BaseModel:
     """This class implements all common behavior for the other models.
     """
+
+    id = Column(String(40), primary_key=True, default=small_helpers.uuid4)
+    date_created = Column(DateTime(), default=datetime.now)
+    date_modified = Column(DateTime(),
+                           default=datetime.now,
+                           onupdate=datetime.now)
+
     def __init__(self, *args, **kwargs):
         """Initializes the instance with kwargs.
 
