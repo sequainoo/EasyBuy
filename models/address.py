@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Defines the  Address model"""
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
-class Address(BaseModel):
+class Address(AbstractBaseModel):
     """Address model definition.
 
     Attributes:

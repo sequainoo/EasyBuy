@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Defines the PhoneBrand model"""
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
-class PhoneBrand(BaseModel):
+class PhoneBrand(AbstractBaseModel):
     """Phone Brand Model"""
     
     name = ''

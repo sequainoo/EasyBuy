@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Defines the Phone Model"""
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
-class Phone(BaseModel):
+class Phone(AbstractBaseModel):
     """Model of Phone
 
     Attributes:

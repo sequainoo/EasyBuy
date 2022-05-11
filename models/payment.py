@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Defines the Payment model"""
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
-class Payment(BaseModel):
+class Payment(AbstractBaseModel):
     """Payment model definition.
 
     Attributes:

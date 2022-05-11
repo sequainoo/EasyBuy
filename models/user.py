@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Defines the User model"""
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
-class User(BaseModel):
+class User(AbstractBaseModel):
     """User model definition.
 
     Attributes:

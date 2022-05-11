@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Defines the Order model"""
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
-class Order(BaseModel):
+class Order(AbstractBaseModel):
     """Order model definition.
 
     Attributes:

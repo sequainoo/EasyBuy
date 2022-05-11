@@ -1,26 +1,26 @@
 #!/usr/bin/python3
-"""Unit tests for BaseModel"""
+"""Unit tests for AbstractBaseModel"""
 
 import uuid
 import unittest
 from datetime import datetime
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
 class TestInitMethod(unittest.TestCase):
-    """Tests for the BaseModel"""
+    """Tests for the AbstractBaseModel"""
 
     def setUp(self):
-        """Setup each test case with an instance of BaseModel"""
-        self.instance = BaseModel()
+        """Setup each test case with an instance of AbstractBaseModel"""
+        self.instance = AbstractBaseModel()
 
     def test_initialization(self):
         """Test that initialization does not fail"""
-        self.assertTrue(type(self.instance) is BaseModel)
+        self.assertTrue(type(self.instance) is AbstractBaseModel)
 
     def test_initialized_with_id(self):
-        """Test BaseModel instance is initialized with id"""
+        """Test AbstractBaseModel instance is initialized with id"""
         self.assertTrue(type(self.instance.id) == str)
         self.assertTrue(type(uuid.UUID(self.instance.id)) == uuid.UUID)
 
@@ -29,7 +29,7 @@ class TestInitMethod(unittest.TestCase):
         # existing record info
         id_ = str(uuid.uuid4())
         date_created = datetime.now()
-        instance = BaseModel(id=id_,
+        instance = AbstractBaseModel(id=id_,
                                      date_created=date_created,
                                      date_modified=date_created)
         self.assertEqual(instance.id, id_)
@@ -50,18 +50,18 @@ class TestInitMethod(unittest.TestCase):
 
 
 class TestUpdateMethod(unittest.TestCase):
-    """Tests the BaseModel update method"""
+    """Tests the AbstractBaseModel update method"""
 
     def setUp(self):
-        """Setup test cases with instance of BaseModel"""
-        self.instance = BaseModel()
+        """Setup test cases with instance of AbstractBaseModel"""
+        self.instance = AbstractBaseModel()
 
     def test_invoked_with_no_arg(self):
         """Test that when no argument is passed ValueError is raised"""
         self.assertRaises(TypeError, self.instance.update)
 
     def test_invoked_with_positional_arg(self):
-        """Test BaseModel.update raises TypeError if passed positional arg"""
+        """Test AbstractBaseModel.update raises TypeError if passed positional arg"""
         self.assertRaises(TypeError, self.instance.update, 'Apple')
 
     def test_date_created_unchanged(self):
@@ -89,11 +89,11 @@ class TestUpdateMethod(unittest.TestCase):
 
 
 class TestToDict(unittest.TestCase):
-    """Tests for BaseModel to_dict method."""
+    """Tests for AbstractBaseModel to_dict method."""
     
     def setUp(self):
         """Setup tests"""
-        self.instance = BaseModel(name='Apple')
+        self.instance = AbstractBaseModel(name='Apple')
 
     def test_output_is_dict(self):
         """Test that output is a dictionary object"""
@@ -120,7 +120,7 @@ class TestStr(unittest.TestCase):
         format:
             [type] - (id)
         """
-        instance = BaseModel()
+        instance = AbstractBaseModel()
         expected = "[{:s}] - ({:s})".format(instance.__class__.__name__,
                                             instance.id)
         

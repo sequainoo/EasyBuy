@@ -13,7 +13,7 @@ from utilities import small_helpers
 Base = declarative_base()
 
 
-class BaseModel:
+class AbstractBaseModel:
     """This class implements all common behavior for the other models.
     """
 

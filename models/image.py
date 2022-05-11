@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Defines the Image model"""
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
-class Image(BaseModel):
+class Image(AbstractBaseModel):
     """image model definition.
 
     Attributes:

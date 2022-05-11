@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Defines the OrderItem model"""
 
-from models.base import BaseModel
+from models.base import AbstractBaseModel
 
 
-class OrderItem(BaseModel):
+class OrderItem(AbstractBaseModel):
     """Model of Phone
 
     Attributes:
