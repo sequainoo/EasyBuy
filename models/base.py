@@ -39,6 +39,9 @@ class BaseModel:
             raise TypeError('Invoked with positional argument(s)')
         if not kwargs:
             raise TypeError('Invoked with no keyword argument(s)')
+
+        if 'id' in kwargs:
+            kwargs.pop('id')
         if 'date_created' in kwargs:
             kwargs.pop('date_created')
         if 'date_modified' in kwargs:
