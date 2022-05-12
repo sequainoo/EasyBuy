@@ -15,6 +15,11 @@ Base = declarative_base()
 
 class AbstractBaseModel:
     """This class implements all common behavior for the other models.
+
+         Attributes:
+             id (str): a unique id for the object
+             date_created (datetime): date and time created
+             date_modified (datetime): data and time modified
     """
 
     id = Column(String(40), primary_key=True, default=small_helpers.uuid4)
@@ -22,31 +27,6 @@ class AbstractBaseModel:
     date_modified = Column(DateTime(),
                            default=datetime.now,
                            onupdate=datetime.now)
-
-    def __init__(self, *args, **kwargs):
-        """Initializes the instance with kwargs.
-
-        Args:
-            args : (null)
-            kwargs: (null).
-
-        Attributes:
-            id (str): a unique id for the object
-            date_created (datetime): date and time created
-            date_modified (datetime): data and time modified
-        """
-        if kwargs:
-            for key, value in kwargs.items():
-                setattr(self, key, value)
-        
-        if 'id' in kwargs:
-            if type(self.date_created) is not datetime\
-                or type(self.date_modified) is not datetime:
-                raise ValueError('date must be a datetime instance')
-        else:
-            self.id = str(uuid.uuid4())
-            self.date_created = datetime.now()
-            self.date_modified = self.date_created
 
     def update(self, *args, **kwargs):
         "Updates an instance with key/value pairs provided"
