@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 """Defines the Image model"""
 
-from models.base import AbstractBaseModel
+from sqlalchemy import (Column, String, Boolean, Float,
+                        Integer, ForeignKey, Text)
+from sqlalchemy.orm import relationship
+
+from models.base import AbstractBaseModel, Base
 
 
-class Image(AbstractBaseModel):
+class Image(AbstractBaseModel, Base):
     """image model definition.
 
     Attributes:
@@ -13,6 +17,9 @@ class Image(AbstractBaseModel):
         url (str): image url
     """
 
-    phone_id = ''
-    alt_text = ''
-    url = ''
+    __tablename__ = 'images'
+    phone_id = Column(String(60),
+                      ForeignKey('phones.id'),
+                      nullable=False)
+    alt_text = Column(String(100), nullable=False)
+    url = Column(String(100), nullable=False, unique=True)
