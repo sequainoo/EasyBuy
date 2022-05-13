@@ -1,15 +1,18 @@
 #!/usr/bin/python3
 """Defines the Order model"""
 
-from models.base import AbstractBaseModel
+from sqlalchemy import Column, String, Boolean, Float, Integer, ForeignKey
+from sqlalchemy.orm import relationship, backref
+
+from models.base import AbstractBaseModel, Base
 
 
-class Order(AbstractBaseModel):
+class Order(AbstractBaseModel, Base):
     """Order model definition.
 
     Attributes:
         order_number (int): an auto incrementing number
-        user_id (str): id of use who made the order
+        customer_id (str): id of use who made the order
         items (list): relationship with order items, list of order items
         paid (bool): indicates an order has been paid
         processed (bool): indicates an order is ready and being shipped
@@ -18,11 +21,17 @@ class Order(AbstractBaseModel):
         total_cost (float): total cost of order
     """
 
-    order_number = 0
-    user_id = ''
-    items = []
-    paid = False
-    processed = False
-    shipped = False
-    number_of_items = 0
-    total_cost = 0.00
+    __tablename__ = 'orders'
+    order_number = Column(Integer, autoincrement=True)
+    customer_id = Column(String(60), ForeignKey('customers.id'))
+    paid = Column(Boolean, default=False)
+    processed = Column(Boolean, default=False)
+    shipped = Column(Boolean, default=False)
+    shipping_date = Column(DateTime, nullable=True)
+    number_of_items = Column(Integer, nullable=False)
+    total_cost = Column(Float, nullable=False)
+    customer = relationship('Customer',
+                            backref=backref('orders', cascade='all, delete-orphan'),
+                            uselist=False)
+    items = relationship('OrderItem', backref='order')
+    payment = relationship('Payment', backref='order', uselist=False)
