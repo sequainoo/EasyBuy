@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 """Defines the OrderItem model"""
 
-from models.base import AbstractBaseModel
+from sqlalchemy import Column, String, Float, Integer, ForeignKey
+from sqlalchemy.orm import relationship
+
+from models.base import AbstractBaseModel, Base
 
 
-class OrderItem(AbstractBaseModel):
+class OrderItem(AbstractBaseModel, Base):
     """Model of Phone
 
     Attributes:
@@ -17,8 +20,14 @@ class OrderItem(AbstractBaseModel):
         total_price (float): the total price for all units of the phone
     """
 
-    order_id = ''
-    phone_id = ''
-    quantity_ordered = 0
-    unit_price = 0.00
-    total_price = 0.00
+    __tablename__ = 'order_items'
+    order_id = Column(String(60),
+                      ForeignKey('orders.id'),
+                      nullable=False)
+    phone_id = Column(String(60),
+                      ForeignKey('phones.id'),
+                      nullable=False)
+    quantity_ordered = Column(Integer, nullable=False)
+    unit_price = Column(Float, nullable=False)
+    total_price = Column(Float, nullable=False)
+    phone = relationship('Phone', backref='orders')
