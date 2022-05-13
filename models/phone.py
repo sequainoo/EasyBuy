@@ -1,10 +1,14 @@
 #!/usr/bin/python3
 """Defines the Phone Model"""
 
-from models.base import AbstractBaseModel
+from sqlalchemy import (Column, Integer, Float, String, Text,
+                        ForeignKey, CheckConstraint)
+from sqlalchemy.orm import relationship
+
+from models.base import AbstractBaseModel, Base
 
 
-class Phone(AbstractBaseModel):
+class Phone(AbstractBaseModel, Base):
     """Model of Phone
 
     Attributes:
@@ -16,14 +20,20 @@ class Phone(AbstractBaseModel):
         brand_id (str): the id of the phone's brand
         quantity (int): the number of instances of the phone in stock
         price (float): the price of the phone
-
-    Relationship:
-        images: a list of images related to the phone
+        images [list]: a list of images related to the phone
     """
 
-    name = ''
-    description = ''
-    brand_id = ''
-    quantity = 0
-    price = 0.00
-    images = []
+    __tablename__ = 'phones'
+    name = Column(String(50), nullable=False)
+    description = Column(Text, nullable=False)
+    brand_id = Column(String(60),
+                      ForeignKey('phone_brands.id'),
+                      nullable=False)
+    quantity = Column(Integer, default=1)
+    price = Column(Float, nullable=False)
+    images = relationship('Image',
+                          cascade="all, delete-orphan",
+                          backref='phone')
+    __table_args__ = (
+        CheckConstraint('quantity >= 0', name='quantity_check'),
+    )
