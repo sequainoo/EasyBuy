@@ -52,7 +52,8 @@ class AbstractBaseModel:
         for key, value in temp.items():
             if key == 'date_created' or key == 'date_modified':
                 value = value.isoformat()
-            dict_[key] = value
+            if not key.startswith('_'):
+                dict_[key] = value
         return dict_
     
     def __str__(self):
