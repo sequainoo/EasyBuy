@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 """Defines the  Address model"""
 
-from models.base import AbstractBaseModel
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
+
+from models.base import AbstractBaseModel, Base
 
 
-class Address(AbstractBaseModel):
+class Address(AbstractBaseModel, Base):
     """Address model definition.
 
     Attributes:
@@ -14,8 +17,16 @@ class Address(AbstractBaseModel):
         Town (str): Town of the address
         phone_number (str): ten or 13(with code prefix and + sign) digit phone number
     """
-    user_id = ''
-    region_id = ''
-    city_id = ''
-    town = ''
-    phone_number = ''
+
+    __tablename__ = 'addresses'
+    customer_id = Column(String(60),
+                       ForeignKey('customers.id'),
+                       nullable=False)
+    region_id = Column(String(60),
+                       ForeignKey('regions.id'),
+                       nullable=False)
+    city_id = Column(String(60),
+                       ForeignKey('regions.id'),
+                       nullable=False)
+    town = Column(String(60), nullable=False)
+    phone_number = Column(String(60), unique=True, nullable=False)
