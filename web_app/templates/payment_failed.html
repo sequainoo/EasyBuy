@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if get_flashed_messages() %}
+<span class="flashed-message">{{get_flashed_messages()[-1]}}</span>
+{% endif %}
+<a href="{{order_url}}">try again</a>
+{% endblock %}

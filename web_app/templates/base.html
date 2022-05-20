@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/styles/common.css?{{id}}">
+    <link rel="stylesheet" type="text/css" href="/static/styles/header.css?{{id}}">
+    <link rel="stylesheet" type="text/css" href="/static/styles/footer.css?{{id}}">
+    <script src="/static/js/jquery.js?{{id}}"></script>
+    <script src="/static/js/base.js?{{id}}"></script>
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <header class="header">
+      <!--                           navigation                           -->
+      <ul class="nav">
+        <li><a href="/products">EasyBuy</a></li>
+      </ul>
+      <!--                           search                           -->
+      <!-- <form class="query">
+        <input name="query" placeholder="search">
+        <input type="submit" value="search">
+      </form> -->
+      <!--                           login/logut                           -->
+      <div class="login">
+        <img src="" alt="">user
+      </div>
+      <!--                           cart                           -->
+      <div class="cart-container">Cart <span class="cart"></span></div>
+    </header>
+  
+    <main class="main">
+      <!--                           sidebar                           -->
+      <aside class="aside">
+        {% block aside %}
+        {% endblock %}
+      </aside>
+      <!--                           content                           -->
+      <section class="content">
+        {% block content %}
+        {% endblock %}
+      </section>
+    </main>
+
+      <!--                           footer                           -->
+    <section class='footer'>
+      <footer><span>EASYBUY</span></footer>
+    </section>
+  </body>
+</html>

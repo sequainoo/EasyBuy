@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/styles/checkout.css?{{id}}">
+<script src="/static/js/send_address.js?{{id}}"></script>
+<script src="/static/js/payment.js?{{id}}"></script>
+{% endblock %}
+
+{% block aside %}
+<div class="order-summary">
+  <h3>Order Number: {{ order.order_number}}</h3>
+  <p><span>Number of Items: </span>{{ order.number_of_items }}</p>
+  <p><span>Total Cost: </span>{{order.total_cost}}</p>
+  <div class="order-items">
+    <h3>Items</h3>
+    {%  for item in order.items %}
+    <p class="item">
+      <span class="name">{{ item.phone.name }}</span>
+      <span>Quantity{{ item.quantity_ordered }}</span>
+      <span>unit cost: {{ item.unit_cost }}</span>
+      <span>Total cost: {{ item.total_cost }}</span>
+    </p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<h2 class="title">Checkout</h2>
+{% if customer.addresses %}
+<!--                 List of exisitng addresses if any                 -->
+<div class="addresses">
+  <h3>Addresses</h3>
+  {% for address in customer.addresses %}
+  <div class="box">
+    <div class="address">
+      <!--             radio btn                 -->
+      <input type="radio" name="address" 
+        data-id="{{ address.id }}"
+        {% if address.default %}checked{% endif %}>
+      <!--             details                 -->
+      <p class="region">
+        <span>Region: </span>{{ address.region.name}}
+      </p>
+      <p class="city">
+        <span>City: </span>{{ address.city.name}}
+      </p>
+      <p class="region">
+        <span>Region: </span>{{ address.region.name}}
+      </p>
+      <p class="phone-number">
+        <span>Phone: </span>{{ address.phone_number}}
+      </p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<!--                          address form                 -->
+<section class="address-form">
+  {% if get_flashed_messages() %}
+  <span class="flashed-message">{{get_flashed_messages()[-1]}}</span>
+  {% endif %}
+  <form action="/address?order_id={{order.id}}" method="POST">
+    <h3>Addresses Form</h3>
+    <input id="customer_id" type="text" hidden name="customer_id" value="{{ customer.id }}">
+    <!--                       Region                      -->
+    <p>
+      <label for="region_id">Region</label>
+      <select name="region_id" id="region_id">
+        {% for region in regions %}
+        <option value="{{ region.id }}">{{ region.name }}</option>
+        {% endfor %}
+      </select>
+    </p>
+    <!--                       City                      -->
+    <p>
+      <label for="city_id">City</label>
+      <select name="city_id" id="city_id">
+        {% for city in cities %}
+        <option value="{{ city.id }}">{{ city.name }}</option>
+        {% endfor %}
+      </select>
+    </p>
+    <!--                       Town                      -->
+    <p>
+      <label for="town">Town</label>
+      <input id="town" type="text" name="town" placeholder="Ash Town">
+    </p>
+    <!--                       Phone number                      -->
+    <p>
+      <label for="phone_number">Phone</label>
+      <input id="phone_number" type="text" name="phone_number" placeholder="0244870542">
+    </p>
+    <!--                       Button                      -->
+    <!-- <a class="btn">Save address</a> -->
+    <input type="submit" value="Save Address">
+  </form>
+</section>
+
+<!--                          payment form                  -->
+<section class="payment">
+  <form class="payment-form">
+    <h3>Payment</h3>
+    <p>
+      <input id="order_id" name="order_id" value="{{order.id}}" hidden>
+    </p>
+    <p>
+      <label for="name_on_card">Name on card</label>
+      <input id="name_on_card" type="text" name="name_on_card" value="" placeholder="John Doe">
+    </p>
+    <p>
+      <label for="card_number">Card Number</label>
+      <input id="card_number" type="text" name="card_number" value="" placeholder="4846802902188936">
+    </p>
+    <p>
+      <label for="exp_year">Expiry year</label>
+      <input id="exp_year" type="number" name="exp_year" min="2022" max="2025" value="" placeholder="2022">
+    </p>
+    <p>
+      <label for="exp_month">Expiry Month</label>
+      <input id="exp_month" type="number" name="exp_month" min="1" max="12" value="" placeholder="12">
+    </p>
+    <a class="pay">Pay</a>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/styles/cart.css?{{id}}">
+<script src="/static/js/cart_checkout.js?{{id}}"></script>
+{% endblock %}
+
+{% block aside %}
+<input type="text" name="email" placeholder="Email">
+<input type="text" name="first_name" placeholder="First Name">
+<input type="text" name="last_name" placeholder="Last Name">
+{% endblock %}
+
+{% block content %}
+<section class="cart-detail">
+  <div class="title">
+    <span>Name</span>
+    <span>Description</span>
+    <span>Quantity</span>
+    <span>Price</span>
+  </div>
+  {% for phone, quantity in phones_quantities %}
+  <p class="cart-item">
+    <span class="name">{{ phone.name }}</span>
+    <span class="description">{{ phone.description }}</span>
+    <span class="quantity">{{ quantity }}</span>
+    <span class="price">{{ phone.price *  quantity }}</span>
+  </p>
+  {% endfor %}
+  <button class="cart-checkout">Checkout</button>
+  <button class="cart-clear">clear</button>
+</section>
+{% endblock %}

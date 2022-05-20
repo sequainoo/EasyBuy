@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/styles/phone.css?{{id}}">
+<script src="/static/js/checkout.js?{{id}}"></script>
+<script src="/static/js/add_to_cart.js?{{id}}"></script>
+{% endblock %}
+
+{% block aside %}{% endblock %}
+
+{% block content %}
+
+<article class="phone" data-id="{{ phone.id }}">
+    <!--                           image container                  -->
+    <div class="img-container">
+    <!--       image               -->
+      {% if phone.images[0] %}
+      <img src="{{ phone.images[0].url }}" alt="{{ phone.images[0].alt_text }}">
+      {% else %}
+      <img src="" alt="default image">
+      {% endif %}
+    </div>
+
+    <!--                           image info                  -->
+    <div class="info">
+      <div class="heading">
+        <h2 class="name">{{ phone.name }}</h2>
+      </div>
+      <div class="text">
+        <span class="brand"><strong>Brand: </strong>{{ phone.brand.name }}</span>
+        <span class="description"><strong>Description: </strong>{{ phone.description }}</span>
+        <span class="price"><strong>Price: $</strong>{{ phone.price }}</span>
+      </div>
+      <div class="quantity">
+        <select name="quantity" id="quantity">
+          {% for qty in quantity %}
+          <option value="{{ qty }}">{{ qty }}</option>
+          {% endfor %}
+        </select> Quantity
+      </div>
+      <div class="user-info">
+        <form action="">
+          <input type="text" name="email" placeholder="Email">
+          <input type="text" name="first_name" placeholder="First Name">
+          <input type="text" name="last_name" placeholder="Last Name">
+        </form>
+        <div class="buttons">
+          <a class="add-to-cart" data-id="{{ phone.id }}">Add To Cart</a>
+          <a class="checkout" data-id="{{ phone.id }}">Checkout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </article>
+{% endblock %}

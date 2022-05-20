@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<span class="flashed-message">{{get_flashed_messages()[-1]}}</span>
+{% endif %}
+Your Order is complete. You will receive it on the next day<a href="/products">home</a>
+{% endblock %}
