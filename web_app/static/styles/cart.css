@@ -1,3 +1,13 @@
+.aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input {
+    padding: 10px;
+    margin: 10px;
+}
 .cart-detail {
     /* border: 1px solid rgba(146, 140, 140, 0.288); */
     margin: auto;
