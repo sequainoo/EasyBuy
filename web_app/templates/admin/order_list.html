@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/admin/order_list.css?{{id}}">
+    <link rel="stylesheet" href="/static/styles/admin/common.css?{{id}}">
+    <title>Order List</title>
+</head>
+<body>
+    <nav>
+        <a class="btn" href="/admin/create-phone">Create Phone</a>
+        <a class="btn" href="/admin/list-phones">Product List</a>
+        <a class="btn" href="/admin/list-orders">Orders</a>
+    </nav>
+    <form action="{{ request.url }}" method="POST">
+      <input type="checkbox" name="paid" value="paid" id=""><span>Paid</span>
+      <input type="checkbox" name="notpaid" value="notpaid" id=""><span>Not Paid</span>
+      <input type="checkbox" name="processed" value="processed" id=""><span>Processed</span>
+      <input type="checkbox" name="notprocessed" value="notprocessed" id=""><span>Not Processed</span>
+      <input type="checkbox" name="shipped" value="shipped" id=""><span>Shipped</span>
+      <input type="checkbox" name="notshipped" value="notshipped" id=""><span>Not Shipped</span>
+      <input type="submit" value="search">
+    </form>
+    <span class="info">{{ get_flashed_messages()[-1] }}</span>
+    <ul id="order-list">
+      <li class="title">
+        <span>Order id</span>
+        <span>Order Number</span>
+        <span>Number of items</span>
+        <span>Total Cost</span>
+        <span>Paid</span>
+        <span>Processed</span>
+        <span>Shipped</span>
+        <div class="btn-container">
+          <a class="btn"></a>
+          <a class="btn"></a>
+        </div>
+      </li>
+      {% for order in orders %}
+      <li id="{{ order.id }}">
+        <span>{{ order.id}}</span>
+        <span>{{ order.order_number }}</span>
+        <span>{{ order.number_of_items }}</span>
+        <span>{{ order.total_cost }}</span>
+        <span>{{ order.paid }}</span>
+        <span>{{ order.processed }}</span>
+        <span>{{ order.shipped }}</span>
+        <div class="btn-container">
+          <a href="/admin/process-order/{{ order.id }}" class="btn process-btn">Process</a>
+          <a href="/admin/ship-order/{{ order.id }}" class="btn ship-btn">Ship</a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/admin/create_product.css?{{id}}">
+    <link rel="stylesheet" href="/static/styles/admin/common.css?{{id}}">
+    <title>Admin Create Phone</title>
+  </head>
+  <body>
+    <nav>
+      <a class="btn" href="/admin/create-brand">Create Brand</a>
+      <a class="btn" href="/admin/list-phones">Product List</a>
+      <a class="btn" href="/admin/list-orders">Orders</a>
+    </nav>
+    <form action="{{request.url}}" method="POST" >
+      <h3>Add New Phone</h3>
+      {% for brand in brands %}
+      <p>
+        <input type="radio" name="brand_id" value="{{ brand.id }}"> {{ brand.name }}
+      </p>
+      {% endfor %}
+      <input name="name" value="" placeholder="Name of phone">
+      <input name="quantity" value="" placeholder="Quantity in stock">
+      <input name="price" value="" placeholder="price of phone">
+      <input type="text" name="description" value="" placeholder="description">
+      <input type="submit" value="create">
+    </form>
+  </body>
+</html>

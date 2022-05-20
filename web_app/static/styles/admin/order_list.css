@@ -1,0 +1,88 @@
+
+/*                    search form              */
+form, ul{
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    padding-right: 200px;
+    padding-left: 200px;
+}
+form {
+    margin-top: 50px;
+    border: 1px solid rgba(146, 140, 140, 0.288);
+    font-weight: bold;
+    flex-flow: row wrap;
+    align-items: center;
+}
+form > input{
+    margin-left: 20px;
+}
+form input[type="submit"] {
+    margin-right: 50px;
+    margin-left: auto;
+    padding: 5px;
+    font-size: 18px;
+}
+/*                      order list             */
+ul {
+    flex-direction: column;
+    margin-top: 50px;
+}
+ul li{
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(146, 140, 140, 0.288);
+    border-left: 1px solid rgba(146, 140, 140, 0.288);
+    border-right: 1px solid rgba(146, 140, 140, 0.288);
+    align-items: center;
+}
+li.title {
+    /* width: 80%; */
+    font-weight: bold;
+    border-top: 1px solid rgba(146, 140, 140, 0.288);
+}
+ul span {
+    padding: 10px;
+    /* border: 1px solid rgba(146, 140, 140, 0.288); */
+    display: inline-block;
+    flex: 11%;
+}
+li .btn-container {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+li .btn {
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid rgba(146, 140, 140, 0.288);
+    display: inline-block;
+    width: 50%;
+}
+.title .btn {
+    border: none;
+}
+.process-btn:hover, .ship-btn:hover {
+    color: white;
+    background-color: rgba(28, 32, 32, 0.566);
+    cursor: pointer;
+}
+.process-btn {
+    color: white;
+    background-color: rgba(19, 48, 13, 0.692);
+}
+.ship-btn {
+    color: white;
+    background-color: rgba(4, 106, 161, 0.692);
+}
+.info {
+    margin-top: 10px;
+    color: green;
+    font-size: 1.1rem;
+}

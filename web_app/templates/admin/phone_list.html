@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/admin/order_list.css?{{id}}">
+    <link rel="stylesheet" href="/static/styles/admin/common.css?{{id}}">
+    <title>Phone List</title>
+</head>
+<body>
+    <nav>
+        <a class="btn" href="/admin/create-phone">Create Phone</a>
+        <a class="btn" href="/admin/list-phones">Product List</a>
+        <a class="btn" href="/admin/list-orders">Orders</a>
+    </nav>
+
+    <ul id="order-list">
+      <li class="title">
+        <span>Phone Name</span>
+        <span>Brand</span>
+        <span>Description</span>
+        <span>Price</span>
+        <span>Quantity</span>
+        <span>Image</span>
+      </li>
+      {% for phone in phones %}
+      <li>
+        <span>{{ phone.name}}</span>
+        <span>{{ phone.brand.name }}</span>
+        <span>{{ phone.description }}</span>
+        <span>{{ phone.price }}</span>
+        <span>{{ phone.quantity }}</span>
+        {% if phone.images[0] %}
+        <span><img src="{{ phone.images[0].url }}" alt=""></span>
+        {% else %}
+        <span>No Image</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+</body>
+</html>
