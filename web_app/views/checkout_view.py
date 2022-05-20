@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Checkout view Definition"""
 
-from flask import render_template, request, jsonify, url_for
+from flask import render_template, request, jsonify, url_for, redirect
 
 from web_app.views import app_views
 from models import storage, Order, OrderItem, Customer

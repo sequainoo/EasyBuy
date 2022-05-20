@@ -2,7 +2,7 @@
 
 {% block content %}
 {% if get_flashed_messages() %}
-<span class="flashed-message">{{get_flashed_messages()[-1]}}</span>
+<span class="flashed-message" style="font-size: 30px">{{get_flashed_messages()[-1]}} <a href="{{order_url}}">try again</a></span>
 {% endif %}
-<a href="{{order_url}}">try again</a>
+
 {% endblock %}

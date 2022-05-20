@@ -8,6 +8,9 @@ input {
     padding: 10px;
     margin: 10px;
 }
+h2 {
+    margin: auto;
+}
 .cart-detail {
     /* border: 1px solid rgba(146, 140, 140, 0.288); */
     margin: auto;
