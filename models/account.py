@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """User Account Model Definition"""
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy.orm import relationship
 
-from modAccountels.base import AbstractBaseModel, Base
+from models.base import AbstractBaseModel, Base
 
 
-class (AbstractBaseModel, Base):
+class Account(AbstractBaseModel, Base):
     """User Account Definition for registered users"""
 
     __tablename__ = 'accounts'

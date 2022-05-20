@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Defines the Order model"""
 
-from sqlalchemy import Column, String, Boolean, Float, Integer, ForeignKey
+from sqlalchemy import DateTime, Column, String, Boolean, Float, Integer, ForeignKey
 from sqlalchemy.orm import relationship, backref
 
 from models.base import AbstractBaseModel, Base
@@ -22,7 +22,7 @@ class Order(AbstractBaseModel, Base):
     """
 
     __tablename__ = 'orders'
-    order_number = Column(Integer, autoincrement=True)
+    order_number = Column(Integer, unique=True, autoincrement=True)
     customer_id = Column(String(60), ForeignKey('customers.id'))
     paid = Column(Boolean, default=False)
     processed = Column(Boolean, default=False)

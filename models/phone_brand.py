@@ -11,5 +11,5 @@ class PhoneBrand(AbstractBaseModel, Base):
     """Phone Brand Model"""
     
     __tablename__ = 'phone_brands'
-    name = Column(String(60), nullable=False)
+    name = Column(String(60), nullable=False, unique=True)
     phones = relationship('Phone', backref='brand')

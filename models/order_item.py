@@ -28,6 +28,6 @@ class OrderItem(AbstractBaseModel, Base):
                       ForeignKey('phones.id'),
                       nullable=False)
     quantity_ordered = Column(Integer, nullable=False)
-    unit_price = Column(Float, nullable=False)
-    total_price = Column(Float, nullable=False)
+    unit_cost = Column(Float, nullable=False)
+    total_cost = Column(Float, nullable=False)
     phone = relationship('Phone', backref='orders')

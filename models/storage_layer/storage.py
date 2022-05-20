@@ -51,7 +51,7 @@ class Storage:
         all results returned for a large data is not efficient for memory.
 
         Args:
-            model_type (str): lowercase model name, & '-' between 2 word names
+            model_type (str): case insensitive model name, & '-' between 2 word names
         
         Return:
             Query object: that must be iterated for each obj for efficiency
@@ -59,12 +59,12 @@ class Storage:
         if type(model_type) is not str:
             raise TypeError('model_type must be a string')
 
-        Model = types.get(model_type, None)
+        Model = types.get(model_type.lower(), None)
 
         if not Model:
             raise ValueError('model_type must be a valid model type')
 
-        return self.__session.query(Model).all()
+        return self.__session.query(Model)
 
     def get(self, model_type='', id_=''):
         """Get an object by type and id"""
@@ -73,7 +73,7 @@ class Storage:
         if type(model_type) is not str:
             raise TypeError('model_type must be a string')
 
-        Model = types.get(model_type, None)
+        Model = types.get(model_type.lower(), None)
         
         return self.__session.query(Model).get(id_)
 
@@ -94,6 +94,19 @@ class Storage:
         Model = types.get(model_type, None)
         return self.__session.query(Model).count()
 
-    def commit(self):
+    def save(self):
         """commits the transaction session"""
         self.__session.commit()
+
+    def rollback(self):
+        """rollback session"""
+        self.__session.rollback()
+
+    def get_customer_by_email(self, email=''):
+        """return a phone by email if exists or None"""
+        if not email:
+            raise ValueError('Provide email')
+        if type(email) is not str:
+            raise TypeError('email must be a string')
+        query = self.__session.query(Customer).filter(Customer.email == email)
+        return query.first()
