@@ -28,3 +28,4 @@ The current implementation Does not really process payment is an imitation of pa
 -- <img src="./img/success.JPG" width="100%">
 - ### After successful payment order is processed and shipped.
 
+Author: [Gideon Quainoo](https://twitter.com/gideonme)
