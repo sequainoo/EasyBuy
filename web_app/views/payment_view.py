@@ -2,11 +2,12 @@
 """Payment view Definition"""
 
 from datetime import date, datetime, timedelta
+import random
 
-from flask import render_template, request, url_for
+from flask import render_template, request, url_for, flash, jsonify
 
 from web_app.views import app_views
-from models import storage
+from models import storage, Payment
 
 
 @app_views.route('/payment', methods=['POST'], strict_slashes=False)
@@ -31,12 +32,12 @@ def cart_view():
     payment_info = request.get_json()
 
     # confirm all neccessary details are provided
-    if not payment_info
-        or not payment_info.get('order_id', None)
-        or not payment_info.get('details', None)
-        or not payment_info.get('details').get('name_on_card', None)
-        or not payment_info.get('details').get('card_number', None)
-        or not payment_info.get('details').get('exp_year', None)
+    if not payment_info\
+        or not payment_info.get('order_id', None)\
+        or not payment_info.get('details', None)\
+        or not payment_info.get('details').get('name_on_card', None)\
+        or not payment_info.get('details').get('card_number', None)\
+        or not payment_info.get('details').get('exp_year', None)\
         or not payment_info.get('details').get('exp_month', None):
         return jsonify({'error': 'missing data on payment details'}), 400
 
@@ -44,6 +45,9 @@ def cart_view():
     order = storage.get('Order', payment_info.get('order_id'))
     if not order:
         return jsonify({'error': 'Order does not exist'}), 400
+    
+    if not order.customer.addresses:
+        return jsonify({'error': 'you need an address'}), 400
 
     try:
         year_now = date.today().year
@@ -67,22 +71,24 @@ def cart_view():
     # assume payment is successful or failed
     successful = random.choice([True, False])
     
-    # if successful save payemnt details for that order
+    # if successful save payment details for that order
     if successful:
         payment = Payment(amount_paid=order.total_cost)
-        order.payment = payemnt
+        order.payment = payment
 
         # mark order as paid and set shipping date to today + 1 day
         order.paid = True
         order.shipping_date = datetime.now() + timedelta(days=1)
-        storage.add(payemnt)
+        storage.add(payment)
         storage.save()
 
         # notify customer by email, sending the order url to see status
 
         # return a payment successful page
+        flash('Payment Successful order is being processed!')
         return render_template('payment_successful.html')
     else:
-        url = url_for('app_view.checkout_existing_order_view',
-                      order_id=order_id)
+        flash('Payment failed !')
+        url = url_for('app_views.checkout_existing_order_view',
+                      order_id=order.id)
         return render_template('payment_failed.html', order_url=url)
