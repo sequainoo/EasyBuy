@@ -4,8 +4,8 @@ from flask import Blueprint
 
 app_views = Blueprint('app_views', __name__)
 
-from web_app.views.product_list_view import *
-from web_app.views.product_detail_view import *
+from web_app.views.phone_list_view import *
+from web_app.views.phone_detail_view import *
 from web_app.views.payment_view import *
 from web_app.views.checkout_view import *
 from web_app.views.cart_detail_view import *
