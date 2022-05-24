@@ -1,2 +1,0 @@
-export EASYBUY_MYSQL_USER=easybuy_dev EASYBUY_MYSQL_PWD=easybuy_pwd MYSQL_HOST=localhost EASYBUY_MYSQL_DB=easybuy_test_db sudo
-python -m web_app.app
