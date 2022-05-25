@@ -1,4 +1,0 @@
-#!/usr/bin/bash
-# sets environmental variables for easybuy
-
-export FLW_PUBLIC_KEY=FLWPUBK_TEST-41f44380073ff8b5b260a0e69c14ae79-X FLW_SECRET_KEY=FLWSECK_TEST-69488cdefa4e8a020646bb10c2022d1b-X FLW_ENCRYPTION_KEY=FLWSECK_TESTe2c7a9bc6c92 EASYBUY_MYSQL_USER=easybuy_dev EASYBUY_MYSQL_PWD=easybuy_pwd MYSQL_HOST=localhost EASYBUY_MYSQL_DB=easybuy_test_db
