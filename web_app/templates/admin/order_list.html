@@ -27,7 +27,7 @@
     <ul id="order-list">
       <li class="title">
         <span>Order id</span>
-        <span>Order Number</span>
+        <!-- <span>Order Number</span> -->
         <span>Number of items</span>
         <span>Total Cost</span>
         <span>Paid</span>
@@ -41,7 +41,6 @@
       {% for order in orders %}
       <li id="{{ order.id }}">
         <span>{{ order.id}}</span>
-        <span>{{ order.order_number }}</span>
         <span>{{ order.number_of_items }}</span>
         <span>{{ order.total_cost }}</span>
         <span>{{ order.paid }}</span>
