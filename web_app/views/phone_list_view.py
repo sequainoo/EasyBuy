@@ -8,7 +8,7 @@ from models import storage
 
 
 @app_views.route('/phones', strict_slashes=False)
-def product_list_view():
+def phone_list_view():
     """Returns the products page populated with a list of products"""
     phones = storage.all('Phone')
     brands = storage.all('phone-brand')

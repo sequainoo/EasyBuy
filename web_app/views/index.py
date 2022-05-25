@@ -8,4 +8,4 @@ from utilities.small_helpers import uuid4
 @app_views.route('/')
 def index():
     """Landing page render"""
-    return render_template('landing.html', id=uuid4())
+    return redirect(url_for('app_views.phone_list_view'))

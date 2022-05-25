@@ -11,6 +11,6 @@ def orders_view():
     """
     email = request.form.get('email', '')
     if not email:
-        return redirect(url_for('app_views.phone_list'))
+        return redirect(url_for('app_views.phone_list_view'))
     orders = storage.get_orders_by_email(email)
     return render_template('orders.html', orders=orders, id=uuid4())
