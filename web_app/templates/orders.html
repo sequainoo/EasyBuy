@@ -28,7 +28,7 @@
       {% endfor %}
     </span>
     <span>{{ order.total_cost }}</span>
-    <span>{{ order.paid }}</span>
+    <span>{% if order.paid == False %} <a href="/checkout/{{ order.id }}">Pay Now</a>{% else %} {{ order.paid }} {% endif %}</span>
     <span>{{ order.processed }}</span>
     <span>{{ order.shipped }}</span>
     </li>
