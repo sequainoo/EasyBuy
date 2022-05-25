@@ -2,4 +2,5 @@
 requirements.txt
 venv
 setup_test_db.sql
-startapp*
+*.sh
+*.sql
