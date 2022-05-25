@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/styles/orders.css?{{id}}">
+<title>Orders</title>
+{% endblock %}
+
+{% block content %}
+<ul id="order-list">
+  <li class="title">
+    <span>Order id</span>
+    <!-- <span>Order Number</span> -->
+    <span>Number of items</span>
+    <span>Items</span>
+    <span>Total Cost</span>
+    <span>Paid</span>
+    <span>Processed</span>
+    <span>Shipped</span>
+
+  </li>
+    {% for order in orders %}
+    <li id="{{ order.id }}">
+    <span>{{ order.id}}</span>
+    <span>{{ order.number_of_items }}</span>
+    <span class="order-items">
+      {% for item in order.items %}
+      <span class="item-name">{{ item.phone.name }}, </span>
+      {% endfor %}
+    </span>
+    <span>{{ order.total_cost }}</span>
+    <span>{{ order.paid }}</span>
+    <span>{{ order.processed }}</span>
+    <span>{{ order.shipped }}</span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

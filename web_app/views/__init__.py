@@ -11,3 +11,4 @@ from web_app.views.checkout_view import *
 from web_app.views.cart_detail_view import *
 from web_app.views.index import *
 from web_app.views.address_view import *
+from web_app.views.orders import *

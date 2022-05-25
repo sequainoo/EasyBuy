@@ -110,3 +110,16 @@ class Storage:
             raise TypeError('email must be a string')
         query = self.__session.query(Customer).filter(Customer.email == email)
         return query.first()
+
+    def get_orders_by_email(self, email=''):
+        """Returns orders with a specific email"""
+        if not email:
+            return None
+        customer_query = self.__session.query(Customer.id).filter(Customer.email == email)
+        
+        try:
+            orders_query = self.__session.query(Order)\
+                .filter(Order.customer_id == customer_query.scalar())
+        except Exception:
+            return None
+        return orders_query
