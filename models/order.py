@@ -5,6 +5,7 @@ from sqlalchemy import DateTime, Column, String, Boolean, Float, Integer, Foreig
 from sqlalchemy.orm import relationship, backref
 
 from models.base import AbstractBaseModel, Base
+from utilities.small_helpers import uuid4
 
 
 class Order(AbstractBaseModel, Base):
@@ -30,6 +31,10 @@ class Order(AbstractBaseModel, Base):
     shipping_date = Column(DateTime, nullable=True)
     number_of_items = Column(Integer, nullable=False)
     total_cost = Column(Float, nullable=False)
+    transaction_reference = Column(String(60),
+                                   unique=True,
+                                   nullable=False,
+                                   default='tx_' + uuid4())
     customer = relationship('Customer',
                             backref=backref('orders', cascade='all, delete-orphan'),
                             uselist=False)

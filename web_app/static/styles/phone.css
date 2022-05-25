@@ -68,7 +68,9 @@ img {
 }
 .buttons .add-to-cart {
     background-color: rgba(65, 156, 4, 0.705);
+    cursor: pointer;
 }
 .buttons .checkout {
     background-color: rgba(0, 162, 255, 0.767);
+    cursor: pointer;
 }

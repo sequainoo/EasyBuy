@@ -25,3 +25,4 @@ class Payment(AbstractBaseModel, Base):
     customer_id = Column(String(60),
                          ForeignKey('customers.id'))
     amount_paid = Column(Float, nullable=False)
+    refund_amount = Column(Float, default=0.00)

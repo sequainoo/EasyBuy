@@ -69,18 +69,43 @@ h2.title {
     border-radius: 5px;
     padding: 10px;
 }
-.payment-form p{
+#success {
+    color: green;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    font-size: 20px;
+}
+#fail {
+    color: red;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    font-size: 20px;
+}
+.payment-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
     margin-bottom: 10px;
 }
-.payment-form input, .payment-form a {
+.payment-form a {
     width: 100%;
 }
 .payment-form a {
     border: 1px solid rgba(146, 140, 140, 0.288);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px  black;
     display: inline-block;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: cadetblue;
 }

@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 """Checkout view Definition"""
 
+import os
+
 from flask import render_template, request, jsonify, url_for, redirect
+from sqlalchemy.exc import IntegrityError
 
 from web_app.views import app_views
 from models import storage, Order, OrderItem, Customer
@@ -82,8 +85,12 @@ def checkout_view():
     customer.orders.append(order)
 
     # Add to storage and save
-    storage.add(customer)
-    storage.save()
+    try:
+        storage.add(customer)
+        storage.save()
+    except IntegrityError:
+        storage.rollback()
+        return redirect(url_for('app_views.phone_list_view'))
 
     regions = storage.all('region')
     cities = storage.all('city')
@@ -114,5 +121,6 @@ def checkout_existing_order_view(order_id=''):
                                customer=order.customer,
                                regions=regions,
                                cities=cities,
-                               id=uuid4())
+                               id=uuid4(),
+                               public_key=os.getenv('FLW_PUBLIC_KEY'))
     return redirect(url_for('app_views.product_list_view'))

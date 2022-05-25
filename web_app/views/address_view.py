@@ -13,7 +13,7 @@ from models import storage, Address
 
 @app_views.route('/address', methods=['POST'], strict_slashes=False)
 def address_view():
-    """Returns a Cart page.
+    """Process address
 
     Post data format:
         {
@@ -49,17 +49,34 @@ def address_view():
 
     customer = storage.get('customer', customer_id)
     if not customer:
-        return jsonify({'error': 'customer does not exist'}), 400
+        flash('Customer not exist')
+        return redirect(
+            url_for('app_views.checkout_existing_order_view',
+            order_id=request.args['order_id'])
+        )
 
     if not storage.get('region', region_id):
-        return jsonify({'error': 'region does not exist'}), 400
+        flash('Region not exist')
+        return redirect(
+            url_for('app_views.checkout_existing_order_view',
+            order_id=request.args['order_id'])
+        )
 
     if not storage.get('city', city_id):
-        return jsonify({'error': 'city does not exist'}), 400
+        flash('City not exist')
+        return redirect(
+            url_for('app_views.checkout_existing_order_view',
+            order_id=request.args['order_id'])
+        )
 
     if len(phone_number) < 10 or len(phone_number) > 13:
-        return jsonify({'error': 'city does not exist'}), 400
+        flash('Phone not valid')
+        return redirect(
+            url_for('app_views.checkout_existing_order_view',
+            order_id=request.args['order_id'])
+        )
 
+    # set all existing addresses to not default while new is created
     if len(customer.addresses) > 0:
         for address in customer.addresses:
             address.default = False
@@ -72,6 +89,7 @@ def address_view():
     try:
         storage.add(address)
         storage.save()
+        storage.reload()
     except IntegrityError as e:
         storage.rollback()
         flash('Address with that info exists')

@@ -34,6 +34,6 @@ class Address(AbstractBaseModel, Base):
                        nullable=False)
     town = Column(String(60), nullable=False, primary_key=True,)
     phone_number = Column(String(60), nullable=False)
-    default = Column(Boolean, nullable=False, default=True, onupdate=True)
+    default = Column(Boolean, nullable=False, default=True)
     region = relationship('Region')
     city = relationship('City')
