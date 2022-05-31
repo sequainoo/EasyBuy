@@ -16,16 +16,16 @@ The current implementation Does not really process payment is an imitation of pa
 ## The Flow of Operations
 ---
 - ### The front page allows browsing through a list of phones. Clicking on any takes you to the detail page of the phone.
--- <img src="./img/product_list.JPG" width="100%">
+-- <img src="./readme_img/product_list.JPG" width="100%">
 - ### On the detail page two options are presented, `Add a phone to the cart and continue browsing` or `order the phone as a singleton`. either options allows specification of quantity of phone to include.
--- <img src="./img/product_detail.JPG" width="100%">
+-- <img src="./readme_img/product_detail.JPG" width="100%">
 - ### If first option is choosen you make your order on the `cart page`.
--- <img src="./img/cart.JPG" width="100%">
+-- <img src="./readme_img/cart.JPG" width="100%">
 - ### An order is created for the customer once the `checkout` button is clicked and page to collect your payment and address(first timers) is displayed.
--- <img src="./img/checkout.JPG" width="100%">
+-- <img src="./readme_img/checkout.JPG" width="100%">
 - ### Customer then fills in the address information and finally pay for the order.
 - ### A page is displayed about the success or failure of the payment.
--- <img src="./img/success.JPG" width="100%">
+-- <img src="./readme_img/success.JPG" width="100%">
 - ### After successful payment order is processed and shipped.
 
 Author: [Gideon Quainoo](https://twitter.com/gideonme)
