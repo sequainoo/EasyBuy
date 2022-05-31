@@ -21,7 +21,7 @@ $(document).ready(function() {
     data = JSON.stringify(data);
     console.log(data)
     $.post({
-        'url': 'http://localhost/checkout',
+        'url': 'http://easybuy.digital/checkout',
         'contentType': 'application/json',
         data
     }).done((data, statusCode) => {

@@ -10,7 +10,7 @@ $(document).ready(function() {
     data = JSON.stringify(data)
     console.log(data);
     $.post({
-        "url": "http://localhost/address",
+        "url": "http://easybuy.digital/address",
         "contentType": "application/json",
         data
     }).done((data, statusCode) => {

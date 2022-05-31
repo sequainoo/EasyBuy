@@ -55,7 +55,7 @@ $(document).ready(function () {
       payload.order_id = order_id;
 
       $.post({
-        url: "http://localhost/payment",
+        url: "http://easybuy.digital/payment",
         contentType: "application/json",
         data: JSON.stringify(payload)
       }).done((data, textResponse) => {
@@ -68,7 +68,7 @@ $(document).ready(function () {
             $('.payment-form').css('display', 'none');
             $('#success').css('display', 'flex');
             setTimeout(() => {
-              window.location = 'http://localhost/phones';
+              window.location = 'http://easybuy.digital/phones';
             }, 500);
         }
       });
