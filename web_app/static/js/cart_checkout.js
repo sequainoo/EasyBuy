@@ -26,27 +26,26 @@ function getCart(){
     alert('cart is empty');
 }
     //   checkout on cart funtion
-$('button.cart-checkout').on('click', function (){
+  $('button.cart-checkout').on('click', function (){
     const email = $('input[name=email]')[0].value;
     const first_name = $('input[name=first_name]')[0].value;
     const last_name = $('input[name=last_name]')[0].value;
 
     if (email == '') {
-        alert('Email is needed');
-        return;
+      alert('Email is needed');
+      return;
     }
     cart = getCart();
     if (!cart){
-        return;
+      return;
     }
     let data = {
-        'email': email,
-        'first_name': first_name,
-        'last_name': last_name
+      'email': email,
+      'first_name': first_name,
+      'last_name': last_name
     }
     data.cart = cart;
     data = JSON.stringify(data);
-    console.log(data)
     $.post({
         'url': 'http://localhost/checkout',
         'contentType': 'application/json',

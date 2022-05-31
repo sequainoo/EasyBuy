@@ -43,22 +43,28 @@ def checkout_view():
         or not checkout_info.get('email', None):
         return jsonify({'error': 'cart or email is empty'}), 400
 
-    customer = storage.get_customer_by_email(checkout_info.get('email'))
-    # if custommer is does not exist with such an email
-    # then check customer provides first_name and last_name
-    if not customer and (not checkout_info.get('first_name', None)
-        or not checkout_info.get('last_name', None)):
-        return jsonify({'error': 'first_name or last_name is required '}), 400
-
     # verify items to purchase exists
     # and the quantity of each does not exceed what is in stock
     order_items = checkout_info.get('cart').items()
     for id_, quantity in order_items:
+        if not quantity:
+            return jsonify({'error': 'Quanity is looking funny, try some other items'}), 400
         phone = storage.get('Phone', id_)
         if not phone:
-            return render_template('error404.html'), 404
-        if (phone.quantity - quantity) < 0:
-            return jsonify({'error': 'Quanity is above what is in stock'}), 400
+            return jsonify({'error': 'Phone like that does not exists verify phone id'}), 400
+        try:
+            quantity = int(quantity)
+            if (phone.quantity - quantity) < 0:
+                return jsonify({'error': 'Quanity is above what is in stock'}), 400
+        except (TypeError, ValueError):
+            return jsonify({'error': 'Quanity is not an integer verify'}), 400
+
+    customer = storage.get_customer_by_email(checkout_info.get('email'))
+    # if custommer does not exist with such an email
+    # then check customer provides first_name and last_name
+    if not customer and (not checkout_info.get('first_name', None)
+        or not checkout_info.get('last_name', None)):
+        return jsonify({'error': 'first_name or last_name is required '}), 400
 
     # create an order, add its related items
     order = Order(number_of_items=0, total_cost=0.00)
@@ -92,13 +98,6 @@ def checkout_view():
         storage.rollback()
         return redirect(url_for('app_views.phone_list_view'))
 
-    regions = storage.all('region')
-    cities = storage.all('city')
-    # return render_template('checkout.html',
-    #                        order=order,
-    #                        customer=customer,
-    #                        regions=regions,
-    #                        cities=cities)
     return jsonify({
         'url': url_for('app_views.checkout_existing_order_view',
                        order_id=order.id)

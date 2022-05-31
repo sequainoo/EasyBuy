@@ -1,12 +1,12 @@
-$(document).ready(() => {
-  $('a.checkout').on('click', function (){
+$(document).ready(function() {
+  $('.checkout').on('click', function (){
     const email = $('input[name=email]')[0].value;
     const first_name = $('input[name=first_name]')[0].value;
     const last_name = $('input[name=last_name]')[0].value;
     const quantity = $('select[name=quantity]')[0].value;
     const phone_id = this.dataset['id'];
 
-    if (email == '') {
+    if (!email) {
         alert('Email is needed');
         return;
     }
@@ -33,6 +33,8 @@ $(document).ready(() => {
         // const checkoutHtml = document.open('text/html', 'replace');
         // checkoutHtml.write(data);
         // checkoutHtml.close();
+    }).fail((xhr, statusCode, error) => {
+        alert(JSON.parse(xhr.responseText).error);
     });
   });
 });

@@ -59,9 +59,6 @@ $(document).ready(function () {
         contentType: "application/json",
         data: JSON.stringify(payload)
       }).done((data, textResponse) => {
-        console.log('txdone');
-        console.log(data);
-        alert(data);
         if (data.status === 'error') {
             modal.close();
             $('#fail').css('display', 'flex');

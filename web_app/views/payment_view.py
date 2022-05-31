@@ -90,9 +90,6 @@ def payment_view():
     order = storage.get('Order', payment_response.get('order_id'))
     if not order:
         return jsonify({'error': 'Order does not exist'}), 404
-    
-    # if not order.customer.addresses:
-    #     return jsonify({'error': 'you need an address'}), 400
 
     # send request to payment verification endpoint
     endpoint = 'https://api.flutterwave.com/v3/transactions/{}/verify'.format(

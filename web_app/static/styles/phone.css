@@ -59,10 +59,11 @@ img {
     flex-direction: row;
     text-align: center;
 }
-.buttons a {
+.buttons button {
     width: 50%;
     text-decoration: none;
     color: white;
+    border: none;
     border-radius: 5px;
     padding: 10px;
 }
