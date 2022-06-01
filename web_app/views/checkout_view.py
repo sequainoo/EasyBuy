@@ -34,7 +34,6 @@ def checkout_view():
 
         If no cart or is empty cart then error as json is sent.
     """
-    print(request.data)
     # retrieve checkout information
     checkout_info = request.get_json()
 
@@ -46,17 +45,10 @@ def checkout_view():
     # verify items to purchase exists
     # and the quantity of each does not exceed what is in stock
     order_items = checkout_info.get('cart').items()
-    print('order_items=================')
-    print(order_items)
     for id_, quantity in order_items:
-        print('look at this')
-        print(id_, end=': ')
-        print(quantity)
         if not quantity:
             return jsonify({'error': 'Quanity is looking funny, try some other items'}), 400
         phone = storage.get('Phone', id_)
-        print('this is the phone')
-        print(phone)
         if not phone:
             return jsonify({'error': 'Phone like that does not exists verify phone id'}), 400
         try:
