@@ -24,15 +24,8 @@ $(document).ready(function() {
         'url': 'http://easybuy.digital/checkout',
         'contentType': 'application/json',
         data
-    }).done((data, statusCode) => {
-        if (statusCode > 399){
-            console.log(data);
-            return;
-        }
+    }).done((data, textStatus) => {
         window.location = data.url;
-        // const checkoutHtml = document.open('text/html', 'replace');
-        // checkoutHtml.write(data);
-        // checkoutHtml.close();
     }).fail((xhr, statusCode, error) => {
         alert(JSON.parse(xhr.responseText).error);
     });
