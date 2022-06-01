@@ -40,7 +40,7 @@ class Storage:
         """Setups storage with new session object.
         Sets up the database if not setup"""
         Base.metadata.create_all(self.__engine)
-        Session = sessionmaker(self.__engine, expire_on_commit=False)
+        Session = sessionmaker(self.__engine, expire_on_commit=True)
         self.__session = Session()
 
     def all(self, model_type=''):
