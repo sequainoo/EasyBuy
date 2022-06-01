@@ -55,7 +55,7 @@ $(document).ready(function () {
       payload.order_id = order_id;
 
       $.post({
-        url: "http://easybuy.digital/payment",
+        url: "http://easybuy.digital:8080/payment",
         contentType: "application/json",
         data: JSON.stringify(payload)
       }).done((data, textResponse) => {

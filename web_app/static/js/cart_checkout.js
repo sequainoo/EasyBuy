@@ -47,7 +47,7 @@ function getCart(){
     data.cart = cart;
     data = JSON.stringify(data);
     $.post({
-        'url': 'http://easybuy.digital/checkout',
+        'url': 'http://easybuy.digital:8080/checkout',
         'contentType': 'application/json',
         data
     }).done((data, textStatus) => {
