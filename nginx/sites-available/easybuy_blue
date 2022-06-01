@@ -43,16 +43,16 @@ server {
 	# Add index.php to the list if you are using PHP
 	index index.html index.htm index.nginx-debian.html;
 
-	server_name easybuy;
+	server_name easybuy_blue;
 
-	add_header X-Served-By easybuy;
+	add_header X-Served-By easybuy_blue;
 
 	location /product-images/ {
 		 alias /var/easybuy/phone_image_uploads/;
 	}
 
 	location /static/ {
-		alias /home/sequainoo/projects/EasyBuy/web_app/static/;
+		alias /home/ubuntu/easybuy_blue/web_app/static/;
 	}
 
 	location / {
