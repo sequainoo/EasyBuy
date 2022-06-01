@@ -46,6 +46,8 @@ def checkout_view():
     # verify items to purchase exists
     # and the quantity of each does not exceed what is in stock
     order_items = checkout_info.get('cart').items()
+    print('order_items=================')
+    print(order_items)
     for id_, quantity in order_items:
         print('look at this')
         print(id_, end=': ')
