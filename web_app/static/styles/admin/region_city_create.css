@@ -1,0 +1,41 @@
+.forms-container {
+    color: rgba(12, 11, 11, 0.801);
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10%;
+    justify-content: center;
+    align-items: center;
+}
+form {
+    width: 40%;
+    margin-top: 50px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(146, 140, 140, 0.288);
+    box-shadow: 0px 0px 10px rgba(146, 140, 140, 0.288);
+}
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0px;
+    border: 1px solid rgba(146, 140, 140, 0.288);
+}
+input:hover, select:hover {
+    box-shadow: 0px 0px 10px rgba(146, 140, 140, 0.288);
+}
+label {
+    width: 100%;
+    margin-top: 10px;
+}
+h3 {
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.messages {
+    font-size: 20px;
+    color: rgb(250, 113, 0);
+    margin-top: 25px;
+}
