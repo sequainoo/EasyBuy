@@ -15,6 +15,7 @@
       <a class="btn" href="/admin/list-phones">Product List</a>
       <a class="btn" href="/admin/list-orders">Orders</a>
     </nav>
+    <div class="messages">{{ get_flashed_messages()[-1] }}</div>
     <form action="{{request.url}}" method="POST" enctype="multipart/form-data">
       <lable for="image-input">Select an image for the phone</label>
       <input id="image-input" type="file" name="file">
