@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang='en'>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles/admin/brand_create.css?{{id}}">
     <link rel="stylesheet" href="/static/styles/admin/common.css?{{id}}">
-    <title>Upload</title>
-  </head>
-  <body>
+    <title>Phone List</title>
+</head>
+<body>
     <nav>
-      <a class="btn" href="/admin">Home</a>
       <a class="btn" href="/admin/create-phone">Create Phone</a>
       <a class="btn" href="/admin/list-phones">Product List</a>
       <a class="btn" href="/admin/list-orders">Orders</a>
+      <a class="btn" href="/admin/create-region">Add Region/City</a>
+      <a class="btn" href="/">See Site</a>
     </nav>
-    <form action="{{request.url}}" method="POST" enctype="multipart/form-data">
-      <lable for="image-input">Select an image for the phone</label>
-      <input id="image-input" type="file" name="file">
-      <input type="submit" value="Upload" >
-    </form>
-  </body>
+</body>
 </html>

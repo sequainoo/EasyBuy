@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/admin/region_city_create.css?{{id}}">
+    <link rel="stylesheet" href="/static/styles/admin/common.css?{{id}}">
+    <title>Create Brand</title>
+  </head>
+  <body>
+    <nav>
+      <a class="btn" href="/admin">Home</a>
+      <a class="btn" href="/admin/create-phone">Create Phone</a>
+      <a class="btn" href="/admin/list-phones">Product List</a>
+      <a class="btn" href="/admin/list-orders">Orders</a>
+    </nav>
+    <div class="messages">{{ get_flashed_messages()[-1] }}</div>
+    <div class="forms-container">
+      <form action="/admin/create-region" method="POST">
+        <h3>Add Region</h3>
+        <label for="region-name">Region Name</label>
+        <input id="region-name" name="name">
+        <input type="submit" value="Create">
+      </form>
+      <form action="/admin/create-city" method="POST">
+        <h3>Add City</h3>
+        <label for="city-regions">Regions</label>
+        <select name="region_id" id="city-regions">
+          {% for region in regions %}
+          <option value="{{ region.id }}">{{ region.name }}</option>
+          {% endfor %}
+        </select>
+        <label for="city-name">Region Name</label>
+        <input id="city-name" name="name">
+        <input type="submit" value="Create">
+      </form>
+    </div>
+  </body>
+</html>

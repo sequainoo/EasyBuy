@@ -16,6 +16,7 @@ nav{
     padding-right: 200px;
     padding-left: 200px;
     border-bottom: 1px solid rgba(146, 140, 140, 0.288);
+    box-shadow: 0px 0px 10px rgba(146, 140, 140, 0.288);
 }
 nav {
     flex-direction: row;
@@ -28,8 +29,12 @@ nav .btn {
     padding: 10px;
     margin: 5px;
     border: 1px solid rgba(146, 140, 140, 0.288);
+    box-shadow: 0px 0px 10px rgba(146, 140, 140, 0.288);
     display: inline-block;
     width: 50%;
+}
+nav .btn:hover {
+    box-shadow: 0px 0px 10px rgba(11, 5, 5, 0.627);
 }
 .btn:visited {
     color: inherit;
