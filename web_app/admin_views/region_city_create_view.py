@@ -18,13 +18,16 @@ def region_create_view():
     """Gives a region form and creates a Region an image for a phone.
     """
 
+    # get all regions
     regions = storage.all('region')
 
+    # return region and city creation form if request is GET
     if request.method == 'GET':
         return render_template('admin/region_city_create_form.html',
                                regions=regions,
                                id=uuid4())
 
+    # check region name is provided
     if 'name' not in request.form:
         flash('provide name')
         return render_template('admin/region_city_create_form.html',
@@ -33,6 +36,7 @@ def region_create_view():
 
     region_name = request.form.get('name').title()
     region = Region(name=region_name)
+    # make sure there are no duplicate names for region
     try:
         storage.add(region)
         storage.save()

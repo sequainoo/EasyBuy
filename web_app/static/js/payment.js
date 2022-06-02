@@ -12,11 +12,12 @@ $(document).ready(function () {
     makePayment();
 
     function makePayment() {
-      // customer phone is from address so if is not there  address is not there
+      // customer phone is from address so if is not there address is not there
       if (! customer_phone_number) {
-        alert('You Do no have an address!');
+        alert('You Do not have an address!');
         return
       }
+      // call this class from flutterwave api library with payment details as obj
       const modal = FlutterwaveCheckout({
         public_key,
         tx_ref,
@@ -24,7 +25,7 @@ $(document).ready(function () {
         currency: "GHS",
         payment_options: "card, mobilemoneyghana",
         callback: function(paymentResponse) {
-          // Send AJAX verification request to backend
+          // verify transaction on server
           verifyTransaction(paymentResponse);
         },
         onclose: function(incomplete) {

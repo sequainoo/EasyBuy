@@ -25,20 +25,24 @@ function getCart(){
     }
     alert('cart is empty');
 }
-    //   checkout on cart funtion
+    // checkout the cart items funtion
   $('button.cart-checkout').on('click', function (){
+    // collect user data
     const email = $('input[name=email]')[0].value;
     const first_name = $('input[name=first_name]')[0].value;
     const last_name = $('input[name=last_name]')[0].value;
 
+    // email cannot be omitted
     if (email == '') {
       alert('Email is needed');
       return;
     }
+    // retrieve cart data
     cart = getCart();
     if (!cart){
       return;
     }
+    // build datastructure to send to server
     let data = {
       'email': email,
       'first_name': first_name,
@@ -46,11 +50,13 @@ function getCart(){
     }
     data.cart = cart;
     data = JSON.stringify(data);
+    // send data to server via a post
     $.post({
         'url': 'http://easybuy.digital:8080/checkout',
         'contentType': 'application/json',
         data
     }).done((data, textStatus) => {
+        // take user to checkout page
         alert(textStatus)
         window.location = data.url;
     }).fail((xhr, statusCode, error) => {

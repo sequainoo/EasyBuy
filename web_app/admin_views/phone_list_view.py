@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""definition of Image upload view for a product """
+"""definition funtion to list phones """
 
 from flask import render_template, request, flash, url_for, redirect
 from sqlalchemy import text
