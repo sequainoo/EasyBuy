@@ -21,7 +21,7 @@ $(document).ready(function () {
         public_key,
         tx_ref,
         amount,
-        currency: "NGN",
+        currency: "GHS",
         payment_options: "card, mobilemoneyghana",
         callback: function(paymentResponse) {
           // Send AJAX verification request to backend
