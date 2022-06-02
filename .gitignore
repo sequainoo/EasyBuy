@@ -4,3 +4,5 @@ venv
 setup_test_db.sql
 *.sh
 *.sql
+nginx
+landing_page
