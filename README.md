@@ -6,12 +6,10 @@ The flow of the platform mimics a scenario where you visit a local phone shop.
 You browse, with the option of selecting multiple items and then checking out.
 You do not need an account with the shop to proceed.
 
-In the case of EasyBuy you must provide an email, name, and address for first time buyers and only
-emmail for subsequent events. it is neccessary to get these information to ship orders to the customer.
+You are required to provide an email, name, and address for first time buyers and only email for subsequent shopping. it is neccessary to get these information to ship orders to the customer.
 So the next time after the purchase is not going to be a hustle.
-Payment is by card and its hopeful to include mobile money payment options.
+You get couple Payment options, by card, back and mobile money.
 
-The current implementation Does not really process payment is an imitation of payment.
 
 ## The Flow of Operations
 ---
