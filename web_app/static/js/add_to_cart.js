@@ -1,10 +1,20 @@
 $(document).ready(function (){
+  /* Get localstorage and update it with the productId and quantity pair
+    localstorage.items store the productids and localstorage.quantities
+    stores the corresponding quantities
+  */
   function addToCart(productId, quantity) {
+    // checks values to make sure they are right
     if (!quantity || !productId || !parseInt(quantity)) {
-      return;
+      throw new Error('Your Values are empty');
+    }
+    if (typeof(productId) !== 'string') {
+      throw new Error('Bad type for product id');
     }
     let items = [];
     let quantities = []
+
+    // if localstorage has cart data already update it with the new data
     if (localStorage.items && localStorage.quantities) {
         items = localStorage.items.split(',');
         quantities = localStorage.quantities.split(',');

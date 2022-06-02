@@ -11,6 +11,7 @@ from models import storage
 def process_order_view(order_id=''):
     """Marks an order as processed"""
 
+    # check order if it exists
     if not order_id:
         flash('Supply an order id!')
         return redirect(url_for('admin_views.order_list_view'))
@@ -20,6 +21,7 @@ def process_order_view(order_id=''):
         flash('Order does not exist!')
         return redirect(url_for('admin_views.order_list_view'))
 
+    # make sure order is paid before process
     if not order.paid:
         flash('Order has not been paid for, cannot mark it for processing!')
         return redirect(url_for('admin_views.order_list_view'))
@@ -28,6 +30,7 @@ def process_order_view(order_id=''):
         flash('Order is already Processed!')
         return redirect(url_for('admin_views.order_list_view'))
 
+    # mark order as processed
     order.processed = True
     storage.add(order)
     storage.save()

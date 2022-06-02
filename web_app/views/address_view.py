@@ -28,9 +28,7 @@ def address_view():
         if successful return a succes page
         else unsuccessful page
     """
-    # print(request.headers)
-
-    # data = request.get_json(force=True)
+    # retrieve all address info
     data = request.form
 
     customer_id = data.get('customer_id', None)
@@ -39,6 +37,7 @@ def address_view():
     town = data.get('town', None)
     phone_number = data.get('phone_number', None)
     
+    # make sure information is right
     if not customer_id or not region_id or not city_id\
         or not town or not phone_number:
         flash('incomplete form')

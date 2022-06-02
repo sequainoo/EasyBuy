@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""definition of detailed view of a product page view"""
+"""definition of detailed view of a phone page view"""
 
 from flask import render_template, redirect, url_for
 

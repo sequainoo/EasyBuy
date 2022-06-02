@@ -12,10 +12,12 @@ def phone_create_view():
     """Allows to create a phone.
     On GET it returns a page with forms to create product and upload images
     """
+    # return form to create
     if request.method == 'GET':
         brands = storage.all('phone-brand')
         return render_template('admin/create_phone.html', brands=brands)
     if request.method == 'POST':
+        # check to make sure data provided is right
         name = request.form.get('name', None)
         brand_id = request.form.get('brand_id', None)
         quantity = request.form.get('quantity', 1)
@@ -26,6 +28,7 @@ def phone_create_view():
             flash('Provide neccessary details')
             return redirect(request.url)
 
+        # make sure qunatity is valid value
         try:
             quantity = int(quantity)
             price = float(price)
@@ -33,10 +36,12 @@ def phone_create_view():
             flash('Quantity and price should be numeric')
             return redirect(request.url)
 
+        # return incase brand does not exists
         if not storage.get('phone-brand', brand_id):
             flash('Select a valid brand')
             return redirect(request.url)
 
+        # create phone
         phone = Phone(name=name, brand_id=brand_id, quantity=quantity,
                       price=price, description=description)
         storage.add(phone)
